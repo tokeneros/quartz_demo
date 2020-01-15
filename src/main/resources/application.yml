@@ -1,0 +1,26 @@
+spring:
+  quartz:
+    properties:
+      #---------作业存储设置------------
+      jobStore:
+        # job距离下次触发时间必须 大于 60s,否则触发失败, 默认 5s
+        misfireThreshold: 60000
+        # 使用内存 存储Job
+        class: org.quartz.simpl.RAMJobStore
+      #---------线程配置---------------
+      threadPool:
+        # 常规的线程池
+        class: org.quartz.simpl.SimpleThreadPool
+        # 线程数量
+        threadCount: 20
+        # 线程执行等级
+        threadPriority: 5
+        # SimpleThreadPool 中 inheritLoader 设置为 true，应该是指定是否初始化
+        threadsInheritContextClassLoaderOfInitializingThread: true
+      #---------调度器属性----------------
+      scheduler:
+        instanceName: DefaultQuartzScheduler
+        wrapJobExecutionInUserTransaction: false
+        rmi:
+          export: false
+          proxy: false
